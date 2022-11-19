@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
+
+        <EditText
+            android:id="@+id/judulinput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="#e2e8f0"
+            android:hint="Masukkan Judul..."
+            android:minHeight="48dp"
+            android:padding="10dp" />
+        <EditText
+            android:id="@+id/deskripsiinput"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:gravity="start"
+            android:background="#e2e8f0"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            android:hint="Deskrpsi..."/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tanggal: "
+                android:background="#e2e8f0"
+                android:padding="5dp"
+                android:layout_marginRight="5dp"
+                />
+            <TextView
+                android:id="@+id/tanggal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Belum Ditentukan"
+                android:textColor="@color/black"
+                android:padding="5dp"
+                android:layout_marginRight="5dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/btn_check"
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp"
+        >
+        <TextView
+            android:id="@+id/btn_kalender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:text="📅  Kalender"
+            android:layout_marginBottom="10dp"
+            />
+        <TextView
+            android:id="@+id/btn_jam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:text="🕒  Waktu"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/btn_lampiran"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="🖇️  Lampiran"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:ignore="TouchTargetSizeCheck" />
+    </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:elevation="5dp"
+        android:layout_margin="16dp"
+        app:tint="@color/white"
+        app:backgroundTint="@color/blue"
+        android:src="@drawable/check"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+</androidx.constraintlayout.widget.ConstraintLayout>
