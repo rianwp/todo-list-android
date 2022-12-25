@@ -25,6 +25,7 @@ class FragmentAktivitas : Fragment() {
 
     private lateinit var adapter: AdapterAktivitas
     private lateinit var recyclerView: RecyclerView
+
     private fun init(){
         val data = requireArguments().getSerializable("data")
         adapter = AdapterAktivitas(data as ArrayList<DataRecycleView>)
@@ -42,7 +43,6 @@ class FragmentAktivitas : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val view = inflater.inflate(R.layout.fragment_aktivitas, container, false)
         recyclerView = view.findViewById(R.id.todolist_aktivitas)
         recyclerView.setHasFixedSize(true)

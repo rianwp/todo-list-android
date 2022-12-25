@@ -26,6 +26,7 @@ class FragmentSelesai : Fragment() {
 
     private lateinit var adapter: AdapterSelesai
     private lateinit var recyclerView: RecyclerView
+
     private fun init(){
         val data = requireArguments().getSerializable("data")
         adapter = AdapterSelesai(data as ArrayList<DataRecycleView>)

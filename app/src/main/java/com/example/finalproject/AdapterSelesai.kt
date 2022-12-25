@@ -13,7 +13,7 @@ class AdapterSelesai(private val data: ArrayList<DataRecycleView>): RecyclerView
         val filteredData = ArrayList<DataRecycleView>()
         for(i in data){
             if(i.doneStatus){
-                filteredData.add(DataRecycleView(i.judul, i.jam, i.deskripsi, i.tanggal, i.doneStatus))
+                filteredData.add(DataRecycleView(i.judul, i.jam, i.deskripsi, i.tanggal, i.doneStatus, i.id))
             }
         }
         return filteredData

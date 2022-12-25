@@ -25,6 +25,7 @@ class FragmentTerlewat : Fragment() {
 
     private lateinit var adapter: AdapterTerlewat
     private lateinit var recyclerView: RecyclerView
+
     private fun init(){
         val data = requireArguments().getSerializable("data")
         adapter = AdapterTerlewat(data as ArrayList<DataRecycleView>)

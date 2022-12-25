@@ -7,14 +7,14 @@ import java.text.SimpleDateFormat
 import java.util.Date
 
 class AdapterAktivitas(private val data: ArrayList<DataRecycleView>): RecyclerView.Adapter<ViewHolder>() {
-    val simpleDate = SimpleDateFormat("dd/MM/yyyy hh:mm")
+    val simpleDate = SimpleDateFormat("dd/MM/yyyy HH:mm")
     var currentDate = simpleDate.format(Date())
     fun filterData(): ArrayList<DataRecycleView>{
         val filteredData = ArrayList<DataRecycleView>()
         for(i in data){
             var dataDate = "${i.tanggal} ${i.jam}"
             if(!(i.doneStatus) && simpleDate.parse(currentDate)!! < simpleDate.parse(dataDate)){
-                filteredData.add(DataRecycleView(i.judul, i.jam, i.deskripsi, i.tanggal, i.doneStatus))
+                filteredData.add(DataRecycleView(i.judul, i.jam, i.deskripsi, i.tanggal, i.doneStatus, i.id))
             }
         }
         return filteredData

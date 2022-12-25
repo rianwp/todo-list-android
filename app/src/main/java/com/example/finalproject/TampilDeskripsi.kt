@@ -23,7 +23,7 @@ class TampilDeskripsi : AppCompatActivity() {
         val jam = intent.getStringExtra("jam")
         val doneStatus = intent.getBooleanExtra("doneStatus", true)
 
-        val simpleDate = SimpleDateFormat("dd/MM/yyyy hh:mm")
+        val simpleDate = SimpleDateFormat("dd/MM/yyyy HH:mm")
         var currentDate = simpleDate.format(Date())
 
         judul.text = intent.getStringExtra("judul")
