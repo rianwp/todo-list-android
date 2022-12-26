@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -18,18 +19,24 @@ import com.google.firebase.ktx.Firebase
 private lateinit var auth: FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
+    var backPressedTime: Long = 0
+
     private val fragmentAktivitas = FragmentAktivitas()
     private val fragmentSelesai = FragmentSelesai()
     private val fragmentTerlewat = FragmentTerlewat()
+    private lateinit var progressBar: ProgressBar
     private val bundle = Bundle()
 
     val data = ArrayList<DataRecycleView>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val actionBar = getSupportActionBar()
         actionBar!!.setTitle("Daftar Aktivitas")
+
         auth = Firebase.auth
+        progressBar = findViewById(R.id.progressbar)
         fetchData()
 
         fragmentAktivitas.arguments = bundle
@@ -84,7 +91,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
+    override fun onBackPressed() {
+        if (backPressedTime + 3000 > System.currentTimeMillis()) {
+            super.onBackPressed()
+            finishAffinity()
+        } else {
+            Toast.makeText(this, "Ketuk lagi untuk keluar dari aplikasi", Toast.LENGTH_LONG).show()
+        }
+        backPressedTime = System.currentTimeMillis()
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         getMenuInflater().inflate(R.menu.menu, menu)
         return true
@@ -104,6 +119,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun fetchData() {
+        progressBar.visibility = View.VISIBLE
         //logic seleksi data per user untuk di tampilkan ke recyclerview disini
         val db = FirebaseFirestore.getInstance()
         db.collection("aktivitas").whereEqualTo("userID", auth.currentUser!!.uid)
@@ -127,9 +143,11 @@ class MainActivity : AppCompatActivity() {
                         replace(R.id.frame_layout, fragmentAktivitas)
                         commit()
                     }
+                    progressBar.visibility = View.GONE
                 }
             }
             .addOnFailureListener{
+                progressBar.visibility = View.GONE
                 Toast.makeText(
                     baseContext, "Terjadi Kesalahan Saat Menampilkan Data",
                     Toast.LENGTH_SHORT

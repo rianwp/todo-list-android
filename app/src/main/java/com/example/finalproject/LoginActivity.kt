@@ -14,6 +14,7 @@ import com.google.firebase.ktx.Firebase
 private lateinit var auth: FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
+    var backPressedTime: Long = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -57,5 +58,14 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
             startActivity(intent)
         }
+    }
+    override fun onBackPressed() {
+        if (backPressedTime + 3000 > System.currentTimeMillis()) {
+            super.onBackPressed()
+            finishAffinity()
+        } else {
+            Toast.makeText(this, "Ketuk lagi untuk keluar dari aplikasi", Toast.LENGTH_LONG).show()
+        }
+        backPressedTime = System.currentTimeMillis()
     }
 }

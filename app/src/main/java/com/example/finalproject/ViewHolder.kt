@@ -3,11 +3,10 @@ package com.example.finalproject
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView.ItemView
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ViewHolder(inflater: LayoutInflater, parent: ViewGroup): RecyclerView.ViewHolder(inflater.inflate(R.layout.recycle_view, parent, false)) {
     private var judul: TextView? = null
@@ -32,6 +31,17 @@ class ViewHolder(inflater: LayoutInflater, parent: ViewGroup): RecyclerView.View
         intent.putExtra("jam", data.jam)
         intent.putExtra("tanggal", data.tanggal)
         intent.putExtra("doneStatus", data.doneStatus)
+        intent.putExtra("id", data.id)
         this.itemView.context.startActivity(intent)
+    }
+    fun doneStatusChange(data: DataRecycleView){
+        val intent = Intent(this.itemView.context, MainActivity::class.java)
+        val db = FirebaseFirestore.getInstance()
+        db.collection("aktivitas")
+            .document(data.id)
+            .update("doneStatus", true)
+            .addOnCompleteListener{
+                this.itemView.context.startActivity(intent)
+            }
     }
 }

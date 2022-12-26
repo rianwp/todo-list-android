@@ -1,8 +1,11 @@
 package com.example.finalproject
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -27,6 +30,9 @@ class AdapterAktivitas(private val data: ArrayList<DataRecycleView>): RecyclerVi
         holder.tampilData(filterData()[position])
         holder.itemView.setOnClickListener{
             holder.tampilDeskripsi(filterData()[position])
+        }
+        holder.itemView.findViewById<FloatingActionButton>(R.id.btn_check).setOnClickListener{
+            holder.doneStatusChange(filterData()[position])
         }
     }
     override fun getItemCount(): Int {
