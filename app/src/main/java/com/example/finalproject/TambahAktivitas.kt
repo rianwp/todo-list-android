@@ -197,6 +197,5 @@ class TambahAktivitas : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-
     }
 }

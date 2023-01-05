@@ -11,7 +11,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 class ViewHolder(inflater: LayoutInflater, parent: ViewGroup): RecyclerView.ViewHolder(inflater.inflate(R.layout.recycle_view, parent, false)) {
     private var judul: TextView? = null
     private var jam: TextView? = null
-    private var deskripsi: TextView? = null
     private var tanggal: TextView? = null
 
     init{
